@@ -1,9 +1,9 @@
-## Survey Web
+## Survey Web / Hồng Hà Feedback
 
 ### Mục Lục
 
-- [1. Khởi tạo App](#1)
-- [2. Setup Github Repo](#2)
+- [1. Sửa file HongHaFeedback/index.js ](#1)
+- [2. Sửa file HongHaFeedback/HongHaFeedback.module.scss](#2)
 - [3. Làm việc với file index.js](#3)
 - [4. Làm việc với component App.js](#4)
 - [5. Làm việc với component GlobalStyles](#5)
@@ -89,6 +89,10 @@ function App() {
 
 export default App;
 ```
+
+- Trong thư mục `screens` Tạo các components Home, HongHaContact
+
+- Import các screen tương tứng vào trong file App.js
 
 <a name="5"></a>
 **5. Làm việc với component GlobalStyle**
