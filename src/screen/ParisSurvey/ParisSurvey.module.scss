@@ -1,0 +1,51 @@
+.background{
+    background:rgb(14, 165, 237);
+    height: 100%;
+    padding:40px 0;
+}
+.logo{
+    text-align: center;
+    img{
+        max-width:210px;
+    }
+}
+.box{
+    background:#fff;
+    padding:30px 80px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px 1px rgba(0,0,0,.1);
+}
+.title{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size:16px;
+}
+.form{
+    margin:10px 0;
+}
+.thanks{
+    padding-top:5px;
+    &Title{
+        font-size:16px;
+        margin:10px 0;
+        font-weight: bold;
+    }
+    &Text{
+        font-size:12px;
+        p{
+            margin:0;
+        }
+    }
+    &Hotline{
+        font-size:14px;
+        font-weight: bold;
+        margin-top:10px;
+        a{
+            color:#392060;
+        }
+    }
+}
+.question{
+    margin:20px 0;
+    font-size:14px;
+}
