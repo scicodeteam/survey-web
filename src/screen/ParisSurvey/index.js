@@ -64,21 +64,21 @@ const ParisSurvey = () => {
         if (!values.staff) {
             errors.staff = "Vui lòng nhập nội dung!";
         }
-        if (!values.description) {
-            errors.description = "Vui lòng nhập nội dung!";
-        }
-        if (!values.introduce) {
-            errors.introduce = "Vui lòng nhập nội dung!";
-        }
-        if (!values.service1) {
-            errors.service1 = "Vui lòng nhập nội dung!";
-        }
-        if (!values.service2) {
-            errors.service2 = "Vui lòng nhập nội dung!";
-        }
-        if (!values.service3) {
-            errors.service3 = "Vui lòng nhập nội dung!";
-        }
+        // if (!values.description) {
+        //     errors.description = "Vui lòng nhập nội dung!";
+        // }
+        // if (!values.introduce) {
+        //     errors.introduce = "Vui lòng nhập nội dung!";
+        // }
+        // if (!values.service1) {
+        //     errors.service1 = "Vui lòng nhập nội dung!";
+        // }
+        // if (!values.service2) {
+        //     errors.service2 = "Vui lòng nhập nội dung!";
+        // }
+        // if (!values.service3) {
+        //     errors.service3 = "Vui lòng nhập nội dung!";
+        // }
 
         // if (!values.phone) {
         //     errors.phone = "Vui lòng nhập số điện thoại!";

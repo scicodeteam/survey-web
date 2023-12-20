@@ -4,32 +4,49 @@ import { useEffect, useState } from 'react';
 
 const QAone = (props) => {
     const [survey] = useState(props.survey.data.data[0].question_ids[0]);
-    const [answer] = useState(survey.answer);
-    const [listParts] = useState(survey.row);
-    const [data, setData] = useState('')
-    // useEffect(()=>{
-    //     const obj = {
-    //         "skipped": "",
-    //         "question_id": 105,
-    //         "suggested_answer_id": 236,
-    //         "matrix_row_id": 0,
-    //         "answer_type": "simple_choice",
-    //         "value_datetime": "",
-    //         "value_date": "",
-    //         "value_text_box": "",
-    //         "value_numberical_box": "",
-    //         "value_char_box": "",
-    //         "value_comment": ""
-    //     }
-    //     setTimeout(() => {
-    //         setData(JSON.stringify(obj));
-    //     }, 500);
-    // })
-
-    // console.log(listParts);
+    const [answers] = useState(survey.answer);
+    const [rows] = useState(survey.row);
+    const [formValues, setFormValues] = useState([]);
+    const [matrixRowIds, setMatrixRowIds] = useState([]);
+ 
+    const handleChange = (e) => {
+        let data = e.target;
+        const matrix_row_id = data.getAttribute('matrix_row_id');
+        const suggested_answer_id = data.getAttribute('suggested_answer_id');
+        data = {
+            "skipped": "false",
+            "question_id":  data.getAttribute('question_id'),
+            "suggested_answer_id":  data.getAttribute('suggested_answer_id'),
+            "matrix_row_id":  data.getAttribute('matrix_row_id'),
+            "answer_type": "simple_choice",
+            "value_datetime": "",
+            "value_date": "",
+            "value_text_box": "",
+            "value_numberical_box": "",
+            "value_char_box": "",
+            "value_comment": ""
+        };   
+        
+     
+        // Nếu khác matrix_row_id thì thêm mới
+        if (!matrixRowIds.includes(matrix_row_id)){
+            setMatrixRowIds([...matrixRowIds, matrix_row_id]);
+            setFormValues([...formValues, data]);
+        } else {
+            formValues.map((item) => {
+                if(item.matrix_row_id === matrix_row_id){
+                    item.suggested_answer_id = suggested_answer_id
+                    setFormValues (formValues); 
+                }
+            })
+        }
+    }
+    useEffect(()=>{
+        console.log(formValues);
+    })
 
     // Header Status
-    const status = answer.map((item) => {
+    const status = answers.map((item) => {
         let imageUrl;
         let text = item.value;
         text = text.slice(2);
@@ -59,46 +76,29 @@ const QAone = (props) => {
         )
     })
 
-    const parts = listParts.map((item) => {
+    const parts = rows.map((row, key) => {
         return (
-            <tr key={item.id}>
-                <td className={clsx(styles.name)}>{item.value}</td>
-                <td>
-                    <label>
-                        <input type="radio" name={'suggested_answer_id_' + item.id} value="1056" />
-                        <span></span>
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        <input type="radio" name={'suggested_answer_id_' + item.id} value="1057" />
-                        <span></span>
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        <input type="radio" name={'suggested_answer_id_' + item.id} value="1058" />
-                        <span></span>
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        <input type="radio" name={'suggested_answer_id_' + item.id} value="1059" />
-                        <span></span>
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        <input type="radio" name={'suggested_answer_id_' + item.id} value="1060" />
-                        <span></span>
-                    </label>
-                </td>
-                <td>
-                    <label>
-                        <input type="radio" name={'suggested_answer_id_' + item.id} value="1061" />
-                        <span></span>
-                    </label>
-                </td>
+            <tr key={row.id}>
+                <td className={clsx(styles.name)}>{row.value}</td>
+                {
+                    answers.map((answer, key2) => {
+                        return (
+                            <td>
+                                <label>
+                                    <input 
+                                        type="radio"                            
+                                        onClick={handleChange} 
+                                        question_id = {answer.question_id}
+                                        matrix_row_id = {row.id}
+                                        suggested_answer_id = {answer.id}
+                                        name = {'suggested_answer_id' + row.id} 
+                                    />
+                                    <span></span>
+                                </label>
+                            </td>
+                        )
+                    }) 
+                }
             </tr>
         )
     });
