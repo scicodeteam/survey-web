@@ -6,8 +6,37 @@ const QAthree = (props) => {
     const [survey] = useState(props.survey.data.data[0].question_ids[props.question]);
     const [questionTitle, setQuestionTitle] = useState(survey.title);
     const [answer] = useState(survey.answer);
+    const [formValues, setFormValues] = useState([]);
+    const [nameInput, setNameInput] = useState();
     const color = ['#e94c36', '#e94c36', '#f59d00', '#f59d00', '#fbca43', '#fbca43', '#bbdb5b', '#bbdb5b', '#58d357', '#58d357'];
     // console.log(answer);
+
+    // Xử lý UI
+    const handleChange = (e) => {
+        let data = e.target;
+        data = {
+            "skipped": "false",
+            "question_id":  data.getAttribute('question_id'),
+            "suggested_answer_id": data.getAttribute('suggested_answer_id'),
+            "matrix_row_id": data.getAttribute('matrix_row_id'),
+            "answer_type": "simple_choice",
+            "value_datetime": "",
+            "value_date": "",
+            "value_text_box": "",
+            "value_numberical_box": "",
+            "value_char_box": "",
+            "value_comment": ""
+        };  
+        setFormValues(data);
+        setNameInput(e.target.name);
+    }
+
+    // Gửi data ra Component Cha
+    useEffect(() => {
+        if (formValues.length != 0 ){
+            props.onLoad(nameInput, formValues);
+        }
+    }, [formValues]);
 
     // Remove 1.
     useEffect(() => {
@@ -16,21 +45,30 @@ const QAthree = (props) => {
     },[]);
 
     const status = color.map((item, idx) => {
-        let value;
+        let value, question_id, suggested_answer_id;
+
         if(idx < 4){
             value = answer[0].value;
+            question_id = answer[0].question_id;
+            suggested_answer_id = answer[0].id;
         } else if (idx < 8) {
             value = answer[1].value;
+            question_id = answer[1].question_id;
+            suggested_answer_id = answer[1].id;
         } else {
             value = answer[2].value;
+            question_id = answer[2].question_id;
+            suggested_answer_id = answer[2].id;
         }
         return(
             <label key={idx}>
                 <input 
-                    type="radio" 
-                    name={props.name}
-                    value={value}
-                    onChange={props.onChange}
+                    type='radio' 
+                    onClick={handleChange} 
+                    question_id = {question_id}
+                    matrix_row_id = {0}
+                    suggested_answer_id = {suggested_answer_id}
+                    name = {props.name}
                 />
                 <span style={{backgroundColor: color[idx]}}>{idx + 1}</span>
             </label>

@@ -7,7 +7,35 @@ const QAtwo = (props) => {
     const [questionTitle, setQuestionTitle] = useState(survey.title);
     const [answer] = useState(survey.answer);
     const [checkQuestion, setCheckQuestion] = useState(false);
-    // console.log(answer);
+    const [formValues, setFormValues] = useState([]);
+    const [nameInput, setNameInput] = useState();
+
+    // Xử lý UI
+    const handleChange = (e) => {
+        let data = e.target;
+        data = {
+            "skipped": "false",
+            "question_id":  data.getAttribute('question_id'),
+            "suggested_answer_id": data.getAttribute('suggested_answer_id'),
+            "matrix_row_id": data.getAttribute('matrix_row_id'),
+            "answer_type": "simple_choice",
+            "value_datetime": "",
+            "value_date": "",
+            "value_text_box": "",
+            "value_numberical_box": "",
+            "value_char_box": "",
+            "value_comment": ""
+        };  
+        setFormValues(data);
+        setNameInput(e.target.name);
+    }
+
+    // Gửi data ra Component Cha
+    useEffect(() => {
+        if (formValues.length != 0 ){
+            props.onLoad(nameInput, formValues);
+        }
+    }, [formValues]);
 
     useEffect(() => {
         if(props.question == 1){
@@ -27,9 +55,11 @@ const QAtwo = (props) => {
                 <label>
                     <input 
                         type='radio' 
-                        name={props.name}
-                        value={item.value}
-                        onChange={props.onChange} 
+                        onClick={handleChange} 
+                        question_id = {item.question_id}
+                        matrix_row_id = {0}
+                        suggested_answer_id = {item.id}
+                        name = {props.name}
                     /> 
                     <span>{item.value}</span>
                 </label>

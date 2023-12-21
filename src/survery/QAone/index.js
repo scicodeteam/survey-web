@@ -8,15 +8,17 @@ const QAone = (props) => {
     const [rows] = useState(survey.row);
     const [formValues, setFormValues] = useState([]);
     const [matrixRowIds, setMatrixRowIds] = useState([]);
+    const [suggestedAnswerId, setSuggestedAnswerId] = useState()
  
     const handleChange = (e) => {
         let data = e.target;
         const matrix_row_id = data.getAttribute('matrix_row_id');
-        const suggested_answer_id = data.getAttribute('suggested_answer_id');
+        // const suggested_answer_id = data.getAttribute('suggested_answer_id');
+        setSuggestedAnswerId(data.getAttribute('suggested_answer_id'))
         data = {
             "skipped": "false",
             "question_id":  data.getAttribute('question_id'),
-            "suggested_answer_id":  data.getAttribute('suggested_answer_id'),
+            "suggested_answer_id": data.getAttribute('suggested_answer_id'),
             "matrix_row_id":  data.getAttribute('matrix_row_id'),
             "answer_type": "simple_choice",
             "value_datetime": "",
@@ -35,15 +37,20 @@ const QAone = (props) => {
         } else {
             formValues.map((item) => {
                 if(item.matrix_row_id === matrix_row_id){
-                    item.suggested_answer_id = suggested_answer_id
-                    setFormValues (formValues); 
+                    item.suggested_answer_id = suggestedAnswerId;
+                    setFormValues(formValues); 
                 }
             })
         }
     }
-    useEffect(()=>{
-        console.log(formValues);
-    })
+
+    // Gửi data ra Component Cha
+    useEffect(() => {
+        if (formValues.length == 5){
+            props.onLoad('staff', formValues);
+        }
+    }, [suggestedAnswerId, matrixRowIds, formValues]);
+    
 
     // Header Status
     const status = answers.map((item) => {
@@ -76,14 +83,14 @@ const QAone = (props) => {
         )
     })
 
-    const parts = rows.map((row, key) => {
+    const parts = rows.map((row, idx) => {
         return (
-            <tr key={row.id}>
+            <tr key={idx}>
                 <td className={clsx(styles.name)}>{row.value}</td>
                 {
-                    answers.map((answer, key2) => {
+                    answers.map((answer, idx2) => {
                         return (
-                            <td>
+                            <td key={idx2}>
                                 <label>
                                     <input 
                                         type="radio"                            
@@ -91,7 +98,7 @@ const QAone = (props) => {
                                         question_id = {answer.question_id}
                                         matrix_row_id = {row.id}
                                         suggested_answer_id = {answer.id}
-                                        name = {'suggested_answer_id' + row.id} 
+                                        name = {'suggested_answer_id_' + row.id} 
                                     />
                                     <span></span>
                                 </label>
@@ -103,25 +110,7 @@ const QAone = (props) => {
         )
     });
     
-    const sendData = () => {
-        props.onLoad('staff', {
-            "skipped": "",
-            "question_id": 105,
-            "suggested_answer_id": 236,
-            "matrix_row_id": 0,
-            "answer_type": "simple_choice",
-            "value_datetime": "",
-            "value_date": "",
-            "value_text_box": "",
-            "value_numberical_box": "",
-            "value_char_box": "",
-            "value_comment": ""
-        });
-    }
 
-    useEffect(() => {
-        sendData();
-    },[]);
 
     return(
         <div className={clsx(styles.section)}>

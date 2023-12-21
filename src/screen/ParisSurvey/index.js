@@ -13,7 +13,7 @@ import QAthree from '../../survery/QAthree';
 import QAfour from '../../survery/QAfour';
 
 const ParisSurvey = () => {
-    const intialValues = { description: '', introduce: '', service1: '', service2: '', service3: '', staff: ''};
+    const intialValues = { };
     const [formValues, setFormValues] = useState(intialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
@@ -48,37 +48,47 @@ const ParisSurvey = () => {
         // });
     },[]);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value });
-    }
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormValues({ ...formValues, [name]: value });
+    // }
 
-    const staffData = (name, value) => {
+    const getField = (name, value) => {
         setFormValues({ ...formValues, [name]: value });
     }
+    // const getFieldMatrix = (name, value) => {
+    //     setFormValues({ ...formValues, [name]: value });
+    // }
 
     const validate = (values) => {
         const errors = {};
         // const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         // const regex_phone = /((09|03|07|08|05)+([0-9]{8})\b)/g;
-        if (!values.staff) {
-            errors.staff = "Vui lòng nhập nội dung!";
-        }
+        // if (!values.staff) {
+        //     errors.staff = "Bạn vui lòng nhập đầy đủ đánh giá về các bộ phận!";
+        // }
+                
+        // if (!values.service1) {
+        //     errors.service1 = "Bạn vui lòng chọn câu trả lời!";
+        // }
+
+        // if (!values.service2) {
+        //     errors.service2 = "Bạn vui lòng chọn câu trả lời!";
+        // }
+
+        // if (!values.service3) {
+        //     errors.service3 = "Bạn vui lòng chọn câu trả lời!";
+        // }
+
+        // if (!values.introduce) {
+        //     errors.introduce = "Bạn vui lòng chọn câu trả lời!";
+        // }
+
         // if (!values.description) {
         //     errors.description = "Vui lòng nhập nội dung!";
         // }
-        // if (!values.introduce) {
-        //     errors.introduce = "Vui lòng nhập nội dung!";
-        // }
-        // if (!values.service1) {
-        //     errors.service1 = "Vui lòng nhập nội dung!";
-        // }
-        // if (!values.service2) {
-        //     errors.service2 = "Vui lòng nhập nội dung!";
-        // }
-        // if (!values.service3) {
-        //     errors.service3 = "Vui lòng nhập nội dung!";
-        // }
+
+
 
         // if (!values.phone) {
         //     errors.phone = "Vui lòng nhập số điện thoại!";
@@ -95,12 +105,26 @@ const ParisSurvey = () => {
         setIsSubmit(true);
     }
 
-    // Call API
+    // Call API Post Form
     useEffect(() => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             // Hide Form
             // formRef.current.remove();
-            console.log(formValues);
+            let newsarr = [
+                {} = formValues.staff[0],
+                {} = formValues.staff[1],
+                {} = formValues.staff[2],
+                {} = formValues.staff[3],
+                {} = formValues.staff[4],
+                {} = formValues.service1,
+                {} = formValues.service2,
+                {} = formValues.service3,
+                {} = formValues.introduce,
+                {} = formValues.description,
+            ]
+            console.log(newsarr);
+            // let data = Object.values(formValues);
+
             // Call API
             // postFeedback({
             //     name: formValues.name,
@@ -129,8 +153,7 @@ const ParisSurvey = () => {
                             question={0}
                             name="staff"
                             value={formValues.staff}
-                            onChange={handleChange}
-                            onLoad={staffData}
+                            onLoad={getField}
                             error={formErrors.staff}
                         />}
                         {checkSurveyLoad && surveryID === '84091' && <QAtwo 
@@ -138,7 +161,7 @@ const ParisSurvey = () => {
                             question={1}
                             name="service1"
                             value={formValues.service1}
-                            onChange={handleChange}
+                            onLoad={getField}
                             error={formErrors.service1}
                         />}
                         {checkSurveyLoad && surveryID === '84091' && <QAtwo 
@@ -146,7 +169,7 @@ const ParisSurvey = () => {
                             question={2}  
                             name="service2"
                             value={formValues.service2}
-                            onChange={handleChange}
+                            onLoad={getField}
                             error={formErrors.service2}
                         />}
                         {checkSurveyLoad && surveryID === '84091' && <QAtwo 
@@ -154,7 +177,7 @@ const ParisSurvey = () => {
                             question={3}  
                             name="service3"
                             value={formValues.service3}
-                            onChange={handleChange}
+                            onLoad={getField}
                             error={formErrors.service3}
                         />}
                         {checkSurveyLoad && surveryID === '84091' && <QAthree 
@@ -162,7 +185,7 @@ const ParisSurvey = () => {
                             question={4}  
                             name="introduce"
                             value={formValues.introduce}
-                            onChange={handleChange}
+                            onLoad={getField}
                             error={formErrors.introduce}
                         />}
                         {checkSurveyLoad && surveryID === '84091' && <QAfour 
@@ -170,44 +193,12 @@ const ParisSurvey = () => {
                             question={5}  
                             name="description"
                             value={formValues.description}
-                            onChange={handleChange}
+                            onLoad={getField}
                             error={formErrors.description}
                         />}
                         <Button btnNK>Gửi kết quả</Button>
                     </form>
                     
-                    {/* <div ref={formRef}>
-                        <div className={clsx(styles.title)}>Phản ánh/ Góp ý của khách hàng</div>
-                        <form className={clsx(styles.form)} onSubmit={handleSubmit}>
-                            <TextArea
-                                style1
-                                name="description"
-                                placeholder="Nội dung phản ánh:"
-                                value={formValues.description}
-                                onChange={handleChange}
-                                error={formErrors.description}
-                            />
-                            <Input
-                                style1
-                                name="name"
-                                placeholder="Họ và tên:"
-                                value={formValues.name}
-                                onChange={handleChange}
-                                error={formErrors.name}
-                            />
-                            <Input
-                                style1
-                                name="phone"
-                                placeholder="Số điện thoại:"
-                                value={formValues.phone}
-                                onChange={handleChange}
-                                error={formErrors.phone}
-                            />
-
-                            <Button style1>Gửi phản ánh</Button>
-                        </form>
-                    </div> */}
-
                     {/* <div className={clsx(styles.thanks)}>
                         <div className={clsx(styles.thanksTitle)}>Xin chào Quý Khách</div>
                         <div className={clsx(styles.thanksText)}>
