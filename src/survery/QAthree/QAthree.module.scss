@@ -1,11 +1,15 @@
-.section {
-    font-size: 15px;
-    margin:30px 0;
-}
-
 .title {
     font-size: 18px;
     margin-bottom: 10px;
+    @media(max-width:600px){
+        font-size:16px;
+        margin-bottom: 20px;
+    }
+}
+
+.section {
+    font-size: 15px;
+    margin:30px 0;
 }
 
 .question {
@@ -22,11 +26,15 @@
     input {
         display: none;
     }
+    
 
     label {
         display: inline-block;
         cursor: pointer;
         margin-left: 0;
+        @media (max-width:600px){
+            width:15%;
+        }
     }
 
 
@@ -41,6 +49,9 @@
     align-items: center;
     gap: 10px;
     margin-top: 30px;
+    @media (max-width:600px){
+        width: 100%;
+    }
     span {
         display: block;
         width: fit-content;
@@ -65,6 +76,10 @@
     display: flex;
     gap: 20px;
     justify-content: center;
+    @media(max-width:600px){
+        flex-wrap: wrap;
+        gap:28px 9px;
+    }
     span {
         width: 40px;
         height: 40px;
@@ -75,12 +90,18 @@
         background: #ccc;
         padding: 0;
         cursor: pointer;
-        border-radius: 4px;
+        border-radius: 6px;
         font-size: 16px;
         transition: all 0.2s linear;
         opacity: .6;
-        &:hover{
+        border:2px solid #fff;
+        &:hover,&.active{
+            border:2px solid #666;
             opacity: 1;
+        }
+        @media (max-width:600px){
+            width: 45px;
+            height: 45px;
         }
     }
 }
@@ -89,4 +110,10 @@
     padding-bottom: 10px;
     font-style: italic;
     text-align: center;
+    @media (max-width:600px){
+        padding-left: 5px;
+        font-size: 13px;
+        text-align: left;
+        margin-top: 10px;
+    }
 }

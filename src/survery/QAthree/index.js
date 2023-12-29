@@ -3,19 +3,22 @@ import styles from './QAthree.module.scss';
 import { useEffect, useState } from 'react';
 
 const QAthree = (props) => {
-    const [survey] = useState(props.survey.data.data[0].question_ids[props.question]);
+    const [survey] = useState(props.survey);
+    // const [survey] = useState(props.survey.data.data[0].question_ids[props.question]);
     const [questionTitle, setQuestionTitle] = useState(survey.title);
     const [answer] = useState(survey.answer);
     const [formValues, setFormValues] = useState([]);
     const [nameInput, setNameInput] = useState();
+    const [active, setActive] = useState();
     const color = ['#e94c36', '#e94c36', '#f59d00', '#f59d00', '#fbca43', '#fbca43', '#bbdb5b', '#bbdb5b', '#58d357', '#58d357'];
-    // console.log(answer);
 
+    // console.log(active);
     // Xử lý UI
     const handleChange = (e) => {
         let data = e.target;
+        setActive(data.getAttribute('number'));
         data = {
-            "skipped": "false",
+            "skipped": "",
             "question_id":  data.getAttribute('question_id'),
             "suggested_answer_id": data.getAttribute('suggested_answer_id'),
             "matrix_row_id": data.getAttribute('matrix_row_id'),
@@ -33,7 +36,7 @@ const QAthree = (props) => {
 
     // Gửi data ra Component Cha
     useEffect(() => {
-        if (formValues.length != 0 ){
+        if (formValues.length !== 0 ){
             props.onLoad(nameInput, formValues);
         }
     }, [formValues]);
@@ -63,14 +66,18 @@ const QAthree = (props) => {
         return(
             <label key={idx}>
                 <input 
-                    type='radio' 
-                    onClick={handleChange} 
+                    onClick = {handleChange}
+                    type = 'radio' 
                     question_id = {question_id}
                     matrix_row_id = {0}
                     suggested_answer_id = {suggested_answer_id}
-                    name = {props.name}
+                    name = {props.name}  
+                    number = {idx}                  
                 />
-                <span style={{backgroundColor: color[idx]}}>{idx + 1}</span>
+                <span
+                    className={active != idx ? undefined : clsx(styles.active)}
+                    style={{backgroundColor: color[idx]}}                      
+                >{idx + 1}</span>
             </label>
         )
     })

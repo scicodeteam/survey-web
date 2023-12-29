@@ -1,6 +1,10 @@
 .title {
     font-size: 18px;
     margin-bottom: 10px;
+    @media(max-width:600px){
+        font-size:16px;
+        margin-bottom: 20px;
+    }
 }
 
 .section {
@@ -8,10 +12,14 @@
     padding-bottom: 30px;
 
     table {
+        min-width: 450px;
         img {
             width: 50px;
             display: block;
-            margin: 0 auto 5px
+            margin: 0 auto 5px;
+            @media (max-width:600px){
+                width:35px;
+            }
         }
 
         th,
@@ -20,17 +28,26 @@
             border: none;
             padding: 5px;
             width: 10%;
+            @media (max-width:600px){
+                padding:2px 5px;
+            }
         }
 
         th p {
             font-weight: normal;
             font-size: 12px;
+            @media (max-width:600px){
+                margin: 0;
+            }
         }
 
         .name {
             text-align: left;
             padding-left: 50px;
             width: 15%;
+            @media (max-width:600px){
+                padding-left: 0;
+            }
         }
 
         input {
@@ -87,7 +104,7 @@
             opacity: 1;
         }
 
-
+       
     }
 }
 .feedback {
@@ -96,4 +113,9 @@
     font-style: italic;
     text-align: left;
     padding-left:50px;
+    @media (max-width:600px){
+        margin-top: 10px;
+        padding-left: 5px;
+        font-size: 13px;
+    }
 }

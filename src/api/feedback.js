@@ -20,6 +20,7 @@ export const postSurvey = async (body) => {
         token=${TOKEN}&
         id=${body.id}&
         state=${body.state}&
-        user_input_line_ids=${body.user_input_line_ids}
+        user_input_line_ids=${JSON.stringify(body.user_input_line_ids)}
     `);
 };
+// user_input_line_ids=${body.user_input_line_ids}

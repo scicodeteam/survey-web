@@ -3,7 +3,8 @@ import styles from './QAone.module.scss';
 import { useEffect, useState } from 'react';
 
 const QAone = (props) => {
-    const [survey] = useState(props.survey.data.data[0].question_ids[0]);
+    const [survey] = useState(props.survey);
+    // const [survey] = useState(props.survey.data.data[0].question_ids[0]);
     const [answers] = useState(survey.answer);
     const [rows] = useState(survey.row);
     const [formValues, setFormValues] = useState([]);
@@ -16,7 +17,7 @@ const QAone = (props) => {
         // const suggested_answer_id = data.getAttribute('suggested_answer_id');
         setSuggestedAnswerId(data.getAttribute('suggested_answer_id'))
         data = {
-            "skipped": "false",
+            "skipped": "",
             "question_id":  data.getAttribute('question_id'),
             "suggested_answer_id": data.getAttribute('suggested_answer_id'),
             "matrix_row_id":  data.getAttribute('matrix_row_id'),
@@ -53,26 +54,26 @@ const QAone = (props) => {
     
 
     // Header Status
-    const status = answers.map((item) => {
+    const status = answers.map((item, idx) => {
         let imageUrl;
         let text = item.value;
         text = text.slice(2);
-        if(item.id === 1056){
+        if(idx === 1){
             imageUrl = require('../../assets/accept-react.svg').default;
         }
-        if(item.id === 1057){
+        if(idx === 0){
             imageUrl = require('../../assets/angry-react.svg').default;
         }
-        if(item.id === 1058){
+        if(idx === 2){
             imageUrl = require('../../assets/expectations-react.svg').default;
         }
-        if(item.id === 1059){
+        if(idx === 3){
             imageUrl = require('../../assets/satisfy-react.svg').default;
         }
-        if(item.id === 1060){
+        if(idx === 4){
             imageUrl = require('../../assets/happy-react.svg').default;
         }
-        if(item.id === 1061){
+        if(idx === 5){
             imageUrl = require('../../assets/perfect-react.svg').default;
         }
         return(

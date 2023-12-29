@@ -2,11 +2,20 @@
     background:rgb(14, 165, 237);
     height: 100%;
     padding:40px 0;
+    @media (max-width:600px){
+        padding:20px 0;
+    }
+}
+body{
+    background:rgb(14, 165, 237);
 }
 .logo{
     text-align: center;
     img{
         max-width:210px;
+        @media(max-width:600px){
+            max-width: 160px;
+        }
     }
 }
 .box{
@@ -14,6 +23,13 @@
     padding:30px 80px;
     border-radius: 8px;
     box-shadow: 0 0 5px 1px rgba(0,0,0,.1);
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media (max-width:600px){
+        padding:30px 20px;
+    }
 }
 .title{
     text-transform: uppercase;
@@ -23,25 +39,30 @@
 .form{
     margin:10px 0;
 }
-.thanks{
-    padding-top:5px;
-    &Title{
-        font-size:16px;
-        margin:10px 0;
-        font-weight: bold;
+.intro{
+    text-align: center;
+    &Content{
+        font-size:18px;
+        margin:30px 0;
+        @media(max-width:600px){
+            font-size:15px
+        }
     }
+}
+.thanks{
+    padding-top:20px;
+    text-align: center;
+    font-size:16px;
     &Text{
-        font-size:12px;
         p{
             margin:0;
         }
     }
     &Hotline{
-        font-size:14px;
-        font-weight: bold;
         margin-top:10px;
         a{
-            color:#392060;
+            font-weight: bold;
+            color:rgb(14, 165, 237);
         }
     }
 }

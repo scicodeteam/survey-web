@@ -3,18 +3,21 @@ import styles from './QAtwo.module.scss';
 import { useEffect, useState } from 'react';
 
 const QAtwo = (props) => {
-    const [survey] = useState(props.survey.data.data[0].question_ids[props.question]);
+    const [survey] = useState(props.survey);
+    // const [survey] = useState(props.survey.data.data[0].question_ids[props.question]);
     const [questionTitle, setQuestionTitle] = useState(survey.title);
     const [answer] = useState(survey.answer);
-    const [checkQuestion, setCheckQuestion] = useState(false);
+    // const [checkQuestion, setCheckQuestion] = useState(false);
     const [formValues, setFormValues] = useState([]);
     const [nameInput, setNameInput] = useState();
+    const [question] = useState(props.question);
+    // console.log(question);
 
     // Xử lý UI
     const handleChange = (e) => {
         let data = e.target;
         data = {
-            "skipped": "false",
+            "skipped": "",
             "question_id":  data.getAttribute('question_id'),
             "suggested_answer_id": data.getAttribute('suggested_answer_id'),
             "matrix_row_id": data.getAttribute('matrix_row_id'),
@@ -32,16 +35,16 @@ const QAtwo = (props) => {
 
     // Gửi data ra Component Cha
     useEffect(() => {
-        if (formValues.length != 0 ){
+        if (formValues.length !== 0 ){
             props.onLoad(nameInput, formValues);
         }
     }, [formValues]);
 
-    useEffect(() => {
-        if(props.question == 1){
-            setCheckQuestion(true);
-        }
-    },[]);
+    // useEffect(() => {
+    //     if(props.question === 1){
+    //         setCheckQuestion(true);
+    //     }
+    // },[]);
     
     // Remove 1.
     useEffect(() => {
@@ -69,7 +72,7 @@ const QAtwo = (props) => {
 
     return (
         <div className={clsx(styles.section)}> 
-            {checkQuestion && 
+            {question == 0 && 
                 <div className={clsx(styles.title)}>
                     Câu 2. Trong quá trình làm dịch vụ Quý khách:
                 </div>

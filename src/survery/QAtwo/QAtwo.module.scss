@@ -1,23 +1,35 @@
+.title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    @media(max-width:600px){
+        font-size:16px;
+        margin-bottom: 20px;
+    }
+}
 
 .section {
     font-size: 15px;
 }
 
-.title {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
 .question {
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
     &Title {
         padding-left: 50px;
         flex: 1;
+        @media (max-width:600px){
+            flex: auto;
+            padding-left: 0;
+            width: 100%;
+        }
     }
 
     &Check {
         width: 17.8%;
+        @media (max-width:600px){
+            width: 90px;
+        }
     }
 
     input {
@@ -77,5 +89,10 @@
     padding-bottom: 10px;
     font-style: italic;
     padding-left: 50px;
-    margin: -14px 0 5px 15px;
+    margin: -14px 0 5px 0;
+    @media (max-width:600px){
+        margin: -5px 0 5px 0;
+        padding-left: 5px;
+        font-size: 13px;
+    }
 }
