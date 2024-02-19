@@ -1,18 +1,15 @@
 import clsx from 'clsx';
-import styles from './QAthree.module.scss';
+import styles from './QAfive.module.scss';
 import { useEffect, useState } from 'react';
 
-const QAthree = (props) => {
+const QAfive = (props) => {
     const [survey] = useState(props.survey);
-    // const [survey] = useState(props.survey.data.data[0].question_ids[props.question]);
     const [questionTitle, setQuestionTitle] = useState(survey.title);
     const [answer] = useState(survey.answer);
     const [formValues, setFormValues] = useState([]);
     const [nameInput, setNameInput] = useState();
     const [active, setActive] = useState();
-    const color = ['#e94c36', '#e94c36', '#f59d00', '#f59d00', '#fbca43', '#fbca43', '#bbdb5b', '#bbdb5b', '#58d357', '#58d357'];
 
-    // console.log(active);
     // Xử lý UI
     const handleChange = (e) => {
         let data = e.target;
@@ -47,37 +44,44 @@ const QAthree = (props) => {
         setQuestionTitle(title);
     },[]);
 
-    const status = color.map((item, idx) => {
-        let value, question_id, suggested_answer_id;
+    const status = answer.map((item, idx) => {
+        let imageUrl;
+        let text = item.value;
+        text = text.split(":");
 
-        if(idx < 4){
-            value = answer[0].value;
-            question_id = answer[0].question_id;
-            suggested_answer_id = answer[0].id;
-        } else if (idx < 8) {
-            value = answer[1].value;
-            question_id = answer[1].question_id;
-            suggested_answer_id = answer[1].id;
-        } else {
-            value = answer[2].value;
-            question_id = answer[2].question_id;
-            suggested_answer_id = answer[2].id;
+        if(idx === 1){
+            imageUrl = require('../../assets/accept-react.svg').default;
+        }
+        if(idx === 0){
+            imageUrl = require('../../assets/angry-react.svg').default;
+        }
+        if(idx === 2){
+            imageUrl = require('../../assets/expectations-react.svg').default;
+        }
+        if(idx === 3){
+            imageUrl = require('../../assets/satisfy-react.svg').default;
+        }
+        if(idx === 4){
+            imageUrl = require('../../assets/happy-react.svg').default;
+        }
+        if(idx === 5){
+            imageUrl = require('../../assets/perfect-react.svg').default;
         }
         return(
             <label key={idx}>
                 <input 
                     onClick = {handleChange}
                     type = 'radio' 
-                    question_id = {question_id}
+                    question_id = {item.question_id}
                     matrix_row_id = {0}
-                    suggested_answer_id = {suggested_answer_id}
+                    suggested_answer_id = {item.id}
                     name = {props.name}  
                     number = {idx}                  
                 />
-                <span
-                    className={active != idx ? undefined : clsx(styles.active)}
-                    style={{backgroundColor: color[idx]}}                      
-                >{idx + 1}</span>
+                <span className={active != idx ? undefined : clsx(styles.active)}>
+                    <img src={imageUrl} alt={text}/>
+                    <p>{text[0]}</p>
+                </span>
             </label>
         )
     })
@@ -92,12 +96,6 @@ const QAthree = (props) => {
                 <div className={styles['numberAnswer']}>
                    {status}
                 </div>
-                
-                <div className={styles['level']}>
-                    <span>Chắc chắn không</span>
-                    <p></p>
-                    <span>Chắc chắn có</span>
-                </div>
             </div>
             {props.error && (
                 <div className={clsx(styles.feedback)}>{props.error}</div>
@@ -106,4 +104,4 @@ const QAthree = (props) => {
     );
 }
 
-export default QAthree;
+export default QAfive;

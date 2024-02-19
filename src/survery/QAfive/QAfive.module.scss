@@ -9,11 +9,13 @@
 
 .section {
     font-size: 15px;
-    margin:30px 0;
+    margin:10px 0;
 }
-
 .question {
     width: 100%;
+    @media(max-width:768px){
+        margin-bottom: 30px;
+    }
     &Title {
         padding-left: 50px;
         flex: 1;
@@ -33,7 +35,7 @@
         cursor: pointer;
         margin-left: 0;
         @media (max-width:600px){
-            width:15%;
+            width:30%;
         }
     }
 
@@ -42,66 +44,61 @@
         opacity: 1;
     }
 }
-.level {
-    width: 580px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 30px;
-    @media (max-width:600px){
-        width: 100%;
-    }
-    span {
-        display: block;
-        width: fit-content;
-        white-space: nowrap;
-        color: #e94c36;
-        font-size: 14px;
-        font-weight: 600;
-        &:last-child {
-            color: #58d357;
-        }
-    }
-    p {
-        margin: 0;
-        height: 2px;
-        width: 65%;
-        background: linear-gradient(to right, #e94c36, #f59d00, #fbca43, #bbdb5b, #58d357);
-    }
-}
 .numberAnswer {
-    max-width: 580px;
+    max-width: 80%;
     margin: 0 auto;
     display: flex;
     gap: 20px;
     justify-content: center;
     @media(max-width:600px){
         flex-wrap: wrap;
-        gap:9px;
+        gap:0 9px;
+        max-width: 90%;
     }
     span {
-        width: 40px;
-        height: 40px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
+        width: 110px;
+        height: 100px;
         border: none;
-        background: #ccc;
-        padding: 0;
+        display: block;
+        padding: 5px 10px;
         cursor: pointer;
         border-radius: 6px;
         font-size: 16px;
         transition: all 0.2s linear;
-        opacity: .6;
-        border:2px solid #fff;
-        &:hover,&.active{
-            border:2px solid #666;
-            opacity: 1;
+        border:none;
+        &:hover{
+            background:#eee;
+        }
+        &.active{
+            background:#f3f3f3;
+        }
+        p{
+            text-transform: lowercase;
+            text-align: center;
+            font-size:14px;
+            line-height: 18px;
+            margin:0;
+            @media (max-width:600px){
+                font-size:13px;
+            }
+        }
+        img{
+            width:50px;
+            height:50px;
+            margin:0 auto 5px;
+            display: block;
+            @media(max-width:600px){
+                width:40px;
+                height:40px;
+            }
+        }
+        @media (max-width:768px){
+            width: 80px;
+            height: 110px;
         }
         @media (max-width:600px){
-            width: 45px;
-            height: 45px;
+           width:95px;
+           height:95px;
         }
     }
 }

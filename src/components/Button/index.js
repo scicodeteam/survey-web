@@ -5,6 +5,7 @@ function Button(props) {
     const classes = clsx(styles.btn, {
         [styles.style1]: props.style1,
         [styles.btnNK]: props.btnNK,
+        [styles.btnHH]: props.btnHH,
         [styles.default]: props.default,
         [styles.edit]: props.edit,
         [styles.primary]: props.primary,

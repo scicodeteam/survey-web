@@ -24,8 +24,8 @@ const QAfour = (props) => {
     useEffect(()=>{
         setFormValues({
             "skipped": "",
-            "question_id":  question_id,
-            "suggested_answer_id": suggested_answer_id,
+            "question_id":  +question_id,
+            "suggested_answer_id": +suggested_answer_id,
             "matrix_row_id": 0,
             "answer_type": "free_text",
             "value_datetime": "",
@@ -53,7 +53,7 @@ const QAfour = (props) => {
     return (
         <div className={clsx(styles.section)}> 
             <div className={clsx(styles.title)}>
-                Câu {survey.title}
+                {props.brand !== 'HH' && 'Câu'} {survey.title}
             </div>
             
             <div className={clsx(styles.question)}>

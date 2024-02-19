@@ -1,10 +1,9 @@
 import clsx from 'clsx';
-import styles from './QAthree.module.scss';
+import styles from './QAseven.module.scss';
 import { useEffect, useState } from 'react';
 
-const QAthree = (props) => {
+const QAseven = (props) => {
     const [survey] = useState(props.survey);
-    // const [survey] = useState(props.survey.data.data[0].question_ids[props.question]);
     const [questionTitle, setQuestionTitle] = useState(survey.title);
     const [answer] = useState(survey.answer);
     const [formValues, setFormValues] = useState([]);
@@ -47,30 +46,15 @@ const QAthree = (props) => {
         setQuestionTitle(title);
     },[]);
 
-    const status = color.map((item, idx) => {
-        let value, question_id, suggested_answer_id;
-
-        if(idx < 4){
-            value = answer[0].value;
-            question_id = answer[0].question_id;
-            suggested_answer_id = answer[0].id;
-        } else if (idx < 8) {
-            value = answer[1].value;
-            question_id = answer[1].question_id;
-            suggested_answer_id = answer[1].id;
-        } else {
-            value = answer[2].value;
-            question_id = answer[2].question_id;
-            suggested_answer_id = answer[2].id;
-        }
+    const status = answer.map((item, idx) => {
         return(
             <label key={idx}>
                 <input 
                     onClick = {handleChange}
                     type = 'radio' 
-                    question_id = {question_id}
+                    question_id = {item.question_id}
                     matrix_row_id = {0}
-                    suggested_answer_id = {suggested_answer_id}
+                    suggested_answer_id = {item.id}
                     name = {props.name}  
                     number = {idx}                  
                 />
@@ -106,4 +90,4 @@ const QAthree = (props) => {
     );
 }
 
-export default QAthree;
+export default QAseven;
