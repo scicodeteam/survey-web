@@ -6,6 +6,7 @@ function Button(props) {
         [styles.style1]: props.style1,
         [styles.btnNK]: props.btnNK,
         [styles.btnHH]: props.btnHH,
+        [styles.btnHH2]: props.btnHH2,
         [styles.default]: props.default,
         [styles.edit]: props.edit,
         [styles.primary]: props.primary,

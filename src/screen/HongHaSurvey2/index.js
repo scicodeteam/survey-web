@@ -6,11 +6,14 @@ import DefaultLayout from '../../layout/DefaultLayout';
 import styles from './HongHaSurvey.module.scss';
 import { getSurvey, postSurvey } from '../../api/feedback';
 import QAfour from '../../survery/QAfour';
-import QAfive from '../../survery/QAfive';
-import QAsix from '../../survery/QAsix';
-import QAseven from '../../survery/QAseven';
+import QAeight from '../../survery/QAeight';
+import QAnine from '../../survery/QAnine';
+const imageHappy = require('../../assets/happy-react.svg').default;
+const imageAngry = require('../../assets/angry-react.svg').default;
+const imageLike = require('../../assets/like.png');
+const imageUnlike = require('../../assets/unlike.png');
 
-const HongHaSurvey = () => {
+const HongHaSurvey2 = () => {
     const intialValues = { };
     const [formValues, setFormValues] = useState(intialValues);
     const [formErrors, setFormErrors] = useState({});
@@ -32,9 +35,9 @@ const HongHaSurvey = () => {
     // Lấy danh sách khảo sát về dịch vụ
     // console.log('Cau hoi dich vu', service);
 
-    const getService = (survey) => {
+    const getService = (survey, sequence) => {
         const question = survey.question_ids.filter((q)=>{
-         return (q.col_nb == "12" && q.question_type == "simple_choice");
+         return (q.col_nb === "12" && q.sequence === sequence && q.question_type === "simple_choice");
         })
         setService(question);
     }
@@ -42,9 +45,9 @@ const HongHaSurvey = () => {
     // Lấy danh sách khảo sát nhân viên
     // console.log('Khảo sát nhân viên', staff);
 
-    const getStaff = (survey) => {
+    const getStaff = (survey, col_nb) => {
         const question = survey.question_ids.filter((q)=>{
-            return (q.col_nb == "6" && q.question_type == "simple_choice");
+            return (q.col_nb === col_nb && q.question_type === "simple_choice");
         })
         setStaff(question);
     }
@@ -54,7 +57,9 @@ const HongHaSurvey = () => {
 
     const getIntroduce = (survey) => {
         const question = survey.question_ids.filter((q)=>{
-         return (q.col_nb == "10" && q.question_type == "simple_choice");
+            if(q.col_nb == "12" && q.sequence === 4 && q.question_type === "simple_choice") {
+                return q;
+            }
         })
         setIntroduce(question);
     }
@@ -64,7 +69,7 @@ const HongHaSurvey = () => {
 
     const getFreetext = (survey) => {
         const question = survey.question_ids.filter((q)=>{
-         return (q.question_type == "free_text");
+         return (q.question_type === "free_text");
         })
         setFreetext(question);
     }
@@ -75,15 +80,12 @@ const HongHaSurvey = () => {
         getSurvey({
             id: surveryID, 
         }).then((info) => {
-            // Kiểm tra bộ câu hỏi
-            if(info.data.message){
-                setSurveyList(info);
-                setCheckSurveyLoad(true);
-                getStaff(info.data.data[0]);
-                getService(info.data.data[0]);
-                getIntroduce(info.data.data[0]);
-                getFreetext(info.data.data[0]);
-            }
+            setSurveyList(info);
+            setCheckSurveyLoad(true);
+            getStaff(info.data.data[0], "3");
+            getService(info.data.data[0], 1);
+            getIntroduce(info.data.data[0]);
+            getFreetext(info.data.data[0]);
         });
     },[]);
 
@@ -92,9 +94,9 @@ const HongHaSurvey = () => {
     
     // Khai báo title / favicon
     useEffect(()=>{
-        document.title = 'THẨM MỸ BỆNH VIỆN HỒNG HÀ - KHẢO SÁT KHÁCH HÀNG';
+        document.title = 'BỆNH VIỆN HỒNG HÀ - KHẢO SÁT KHÁCH HÀNG';
         let link = document.querySelector("link[rel~='icon']");
-        link.href = 'https://thammythailan.vn/css/lib/favicon.png';
+        link.href = 'https://benhvienhongha.vn/css/lib/favicon.png';
     },[]);  
 
     // Bắt đầu chạy chương trình
@@ -183,7 +185,7 @@ const HongHaSurvey = () => {
                 <div className={clsx(styles.box)}>
                     <div className={clsx(styles.logo)}>
                         <img
-                            src={require('../../assets/logo-hh.png')}
+                            src={require('../../assets/logo-hh2.svg').default}
                             alt="Logo"
                         />
                     </div>
@@ -191,10 +193,10 @@ const HongHaSurvey = () => {
                     {/* Bắt đầu khảo sát */}
                     <div ref={introRef} className={styles.intro}>
                         <p className={styles.introContent}>
-                            Thẩm mỹ bệnh viện Hồng Hà trân trọng cảm ơn quý khách hàng <br />
+                            Bệnh viện Hồng Hà trân trọng cảm ơn quý khách hàng <br />
                             đã đồng hành cùng chúng tôi trong suốt thời gian qua
                         </p>
-                        <Button handleClick={handleStart} btnHH> Bắt đầu khảo sát </Button>
+                        <Button handleClick={handleStart} btnHH2> Bắt đầu khảo sát </Button>
                     </div>
 
                     {/* Form khảo sát */}
@@ -202,7 +204,7 @@ const HongHaSurvey = () => {
                         <form ref={formRef} className={clsx(styles.question)} onSubmit={handleSubmit}>
                         
                             {checkSurveyLoad && service.map((item, idx) => (
-                                <QAfive
+                                <QAeight
                                     key={idx}
                                     survey={item}                                     
                                     name="service"
@@ -210,27 +212,17 @@ const HongHaSurvey = () => {
                                     onLoad={getField}
                                     error={formErrors.service}
                                     brand={brand}
+                                    imageUrl={[imageHappy, imageAngry]}
                                 />
                             ))}
                             {checkSurveyLoad &&  staff.map((item, idx) => (
-                                <QAsix 
+                                <QAnine 
                                     key={idx}
                                     survey={item} 
                                     name="staff"
                                     value={formValues.staff}
                                     onLoad={getField}
                                     error={formErrors.staff}
-                                    brand={brand}
-                                />
-                            ))}
-                            {checkSurveyLoad && introduce.map((item, idx) => (
-                                <QAseven 
-                                    key={idx}
-                                    survey={item}                                     
-                                    name="introduce"
-                                    value={formValues.introduce}
-                                    onLoad={getField}
-                                    error={formErrors.introduce}
                                     brand={brand}
                                 />
                             ))}
@@ -245,8 +237,19 @@ const HongHaSurvey = () => {
                                     brand={brand}
                                 />
                             ))}
-                            
-                            <Button btnHH>Gửi kết quả</Button>
+                            {checkSurveyLoad && introduce.map((item, idx) => (
+                                <QAeight
+                                    key={idx}
+                                    survey={item}                                     
+                                    name="introduce"
+                                    value={formValues.service}
+                                    onLoad={getField}
+                                    error={formErrors.service}
+                                    brand={brand}
+                                    imageUrl={[imageLike, imageUnlike]}
+                                />
+                            ))}
+                            <Button btnHH2>Gửi kết quả</Button>
                         </form>
                     )}
                     
@@ -254,7 +257,7 @@ const HongHaSurvey = () => {
                     {Object.keys(formErrors).length === 0 && isSubmit && (
                         <div className={clsx(styles.thanks)}>
                             <div className={clsx(styles.thanksText)}>
-                                <p>Thẩm mỹ bệnh viện Hồng Hà chân thành cảm ơn sự góp ý/ phản hồi của Quý khách hàng</p>
+                                <p>Bệnh viện Hồng Hà chân thành cảm ơn sự góp ý/ phản hồi của Quý khách hàng</p>
                                 <p>Sự góp ý/ phản hồi của Quý khách hàng sẽ giúp chúng tôi cải thiện chất lượng dịch vụ, phục vụ, nâng cao trải nghiệm khách hàng.</p>
                                 <p>Trân trọng !</p>
                             </div>
@@ -268,4 +271,4 @@ const HongHaSurvey = () => {
     )
 }
 
-export default HongHaSurvey;
+export default HongHaSurvey2;
