@@ -1,0 +1,121 @@
+.title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    @media(max-width:600px){
+        font-size:16px;
+        margin-bottom: 20px;
+    }
+}
+
+.section {
+    font-size: 15px;
+    margin:30px 0;
+}
+
+.question {
+    display: table;
+    margin:0 auto;
+    &Title {
+        padding-left: 50px;
+        flex: 1;
+    }
+
+    &Check {
+        width: 17.8%;
+    }
+
+    input {
+        display: none;
+    }
+    
+
+    label {
+        display: inline-block;
+        cursor: pointer;
+        margin-left: 0;
+        @media (max-width:600px){
+            width:15%;
+        }
+    }
+
+
+    label input:checked+span:after {
+        opacity: 1;
+    }
+}
+.level {
+    width: 99%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    span {
+        display: block;
+        white-space: nowrap;
+        font-size: 14px;
+        font-weight: 600;
+        width: 33%;
+        text-align: center;
+    }
+}
+.left{
+    color:#e94c36
+}
+.center{
+    color:#fbca43;
+}
+.right{
+    color:#58d357;
+}
+.line{
+    margin: 8px auto;
+    height: 2px;
+    width: 99%;
+    background: linear-gradient(to right, #e94c36, #f59d00, #fbca43, #bbdb5b, #58d357);
+}
+.numberAnswer {
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    @media(max-width:600px){
+        flex-wrap: wrap;
+        gap:9px;
+    }
+    span {
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background: #ccc;
+        padding: 0;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: all 0.2s linear;
+        opacity: .6;
+        border:2px solid #fff;
+        &:hover,&.active{
+            border:2px solid #666;
+            opacity: 1;
+        }
+        @media (max-width:600px){
+            width: 45px;
+            height: 45px;
+        }
+    }
+}
+.feedback {
+    color: rgb(235, 54, 54);
+    padding-bottom: 10px;
+    font-style: italic;
+    text-align: center;
+    @media (max-width:600px){
+        padding-left: 5px;
+        font-size: 13px;
+        text-align: left;
+        margin-top: 10px;
+    }
+}

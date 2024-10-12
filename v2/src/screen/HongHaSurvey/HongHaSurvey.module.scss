@@ -1,0 +1,75 @@
+.background{
+    background:rgb(203, 109, 168);
+    height: 100%;
+    padding:40px 0;
+    @media (max-width:600px){
+        padding:20px 0;
+    }
+}
+body{
+    background:rgb(203, 109, 168);
+}
+.logo{
+    text-align: center;
+    img{
+        max-width:210px;
+        @media(max-width:600px){
+            max-width: 160px;
+        }
+    }
+}
+.box{
+    background:#fff;
+    padding:30px 80px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px 1px rgba(0,0,0,.1);
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media (max-width:768px){
+        padding:30px 40px;
+    }
+    @media (max-width:600px){
+        padding:30px 20px;
+    }
+}
+.title{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size:16px;
+}
+.form{
+    margin:10px 0;
+}
+.intro{
+    text-align: center;
+    &Content{
+        font-size:18px;
+        margin:30px 0;
+        @media(max-width:600px){
+            font-size:12px
+        }
+    }
+}
+.thanks{
+    padding-top:20px;
+    text-align: center;
+    font-size:16px;
+    &Text{
+        p{
+            margin:0;
+        }
+    }
+    &Hotline{
+        margin-top:10px;
+        a{
+            font-weight: bold;
+            color:#b51f7e;
+        }
+    }
+}
+.question{
+    margin:20px 0;
+    font-size:14px;
+}
