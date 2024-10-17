@@ -20,9 +20,9 @@ const QAthree_1_0_1 = (props) => {
         setActive(data.getAttribute('number'));
         data = {
             "skipped": "",
-            "question_id":  data.getAttribute('question_id'),
-            "suggested_answer_id": data.getAttribute('suggested_answer_id'),
-            "matrix_row_id": data.getAttribute('matrix_row_id'),
+            "question_id":  +data.getAttribute('question_id'),
+            "suggested_answer_id": +data.getAttribute('suggested_answer_id'),
+            "matrix_row_id": +data.getAttribute('matrix_row_id'),
             "answer_type": "simple_choice",
             "value_datetime": "",
             "value_date": "",

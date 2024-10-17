@@ -223,10 +223,11 @@ const KnSurvey = () => {
                 state: 'done', 
                 user_input_line_ids: newsarr, 
             });
-            // console.log(newsarr);
+            console.log(newsarr);
         }
     }, [formErrors]);
 
+    
     return (
         <div className={clsx(styles.background)}>
             <DefaultLayout>

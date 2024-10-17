@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import styles from './QAnine_1_1_0.module.scss';
 import { useEffect, useState } from 'react';
+import CheckBoxList from '../../components/CheckBoxList';
 
 const QAnine_1_1_0 = (props) => {
   const [survey] = useState(props.survey);
@@ -13,7 +14,7 @@ const QAnine_1_1_0 = (props) => {
   const [products, setProducts] = useState([]);
 
   // console.log(props.survey.answer);
-  
+  console.log(products);
 
   // Update sự thay đổi của UI
   const handleChange = (message, question_id, suggested_answer_id, nameInput, noIdead, checked) => {
@@ -35,7 +36,7 @@ const QAnine_1_1_0 = (props) => {
     };
     // setNameInput(nameInput);
 
-    if (!noIdead) {
+    if (!noIdead && question_id && suggested_answer_id) {
 
       // Check Product Update
       if (products.length > 0) {
@@ -57,10 +58,12 @@ const QAnine_1_1_0 = (props) => {
       if (products.length > 0 && check === true) {
         handleAddItem(data)
       }
-      // console.log(checked);
+      
+      // Nếu đã có sản phẩm, và sản phẩm được checked thì sẽ xóa sản phẩm
       if (products.length > 0 && checked === true) {
         handleDeleteItem(suggested_answer_id)
-      }
+      }      
+
     } else {
       // Nếu click No Anser gửi data
       props.onLoad('staff', data);
@@ -85,11 +88,12 @@ const QAnine_1_1_0 = (props) => {
 
   // Delete Data
   const handleDeleteItem = (id) => {
-    setProducts(() => {
-      return products.filter((item) => {
-        return item.suggested_answer_id !== id;
-      });
-    });
+    setProducts(products.filter(item => item.suggested_answer_id !== id));
+  };
+
+  // Xóa nhiều sản phẩm
+  const handleDeleteItems = (ids) => {
+    setProducts(products.filter(item => !ids.includes(item.suggested_answer_id)));
   };
 
   // Gửi data ra Component Cha
@@ -106,11 +110,17 @@ const QAnine_1_1_0 = (props) => {
       </div>
 
       <div className={clsx(styles.question)}>
-        <App
+        <CheckBoxList 
+          survey={survey}
+          onClick={handleChange}
+          handleDeleteItem={handleDeleteItem}
+          handleDeleteItems={handleDeleteItems}
+        />
+        {/* <App
           answer={answer}
           survey={survey}
           onClick={handleChange}
-        />
+        /> */}
       </div>
       {props.error && (
         <div className={clsx(styles.feedback)}>{props.error}</div>
@@ -137,19 +147,11 @@ const App = (props) => {
     <>
       {answer.map((item, index) => (
         <div key={item.id} className={clsx(styles.col)}>
-          {index < answer.length - 1 && <CheckBox
+          {index < answer.length && <CheckBox
             data={item}
             name={item.value}
             onReset={handleRemoveReset}
             reset={reset}
-            onClick={props.onClick}
-            staff={item}
-          />}
-          {index === answer.length - 1 && <Reset
-            name={item.value}
-            onReset={handleCheckReset}
-            reset={reset}
-            noIdead
             onClick={props.onClick}
             staff={item}
           />}
@@ -158,6 +160,15 @@ const App = (props) => {
     </>
   );
 };
+
+// {index === answer.length - 1 && <Reset
+//   name={item.value}
+//   onReset={handleCheckReset}
+//   reset={reset}
+//   noIdead
+//   onClick={props.onClick}
+//   staff={item}
+// />}
 
 // Xây dựng nút checkbox
 const CheckBox = (props) => {
@@ -329,7 +340,7 @@ const Input = (props) => {
       )}
       {checked && !props.reset && props.input !== 'none' && (
         <div>          
-          {inputList.map((input, index) => (
+          {/* {inputList.map((input, index) => (
             <div key={input}>
               <textarea
                 value={inputValues[index] || ""}
@@ -337,7 +348,7 @@ const Input = (props) => {
                 placeholder="Lý do quý khách không hài lòng"
               />
             </div>
-          ))}
+          ))} */}
         </div>
       )}
     </div>

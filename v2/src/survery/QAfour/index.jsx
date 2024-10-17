@@ -24,9 +24,9 @@ const QAfour = (props) => {
     useEffect(()=>{
         setFormValues({
             "skipped": "",
-            "question_id":  question_id,
-            "suggested_answer_id": suggested_answer_id,
-            "matrix_row_id": "0",
+            "question_id":  +question_id,
+            "suggested_answer_id": +suggested_answer_id,
+            "matrix_row_id": 0,
             "answer_type": "free_text",
             "value_datetime": "",
             "value_date": "",
