@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Ñëîé_1" data-name="Ñëîé 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1035.14 1035.14">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ffa732;
+      }
+
+      .cls-2 {
+        fill: #ff9f2c;
+      }
+
+      .cls-3 {
+        fill: #ffa430;
+      }
+
+      .cls-4 {
+        fill: #ff8a1c;
+      }
+
+      .cls-5 {
+        fill: #ff7008;
+      }
+
+      .cls-6 {
+        fill: #ff8115;
+      }
+
+      .cls-7 {
+        fill: #ffaa34;
+      }
+
+      .cls-8 {
+        fill: #f60;
+      }
+
+      .cls-9 {
+        fill: #ff790f;
+      }
+
+      .cls-10 {
+        fill: #ff6b04;
+      }
+
+      .cls-11 {
+        fill: #ff760c;
+      }
+
+      .cls-12 {
+        fill: #ffa32f;
+      }
+
+      .cls-13 {
+        fill: #ff9222;
+      }
+
+      .cls-14 {
+        fill: #ff7e13;
+      }
+
+      .cls-15 {
+        fill: #ff8619;
+      }
+
+      .cls-16 {
+        fill: #ff891b;
+      }
+
+      .cls-17 {
+        fill: #ffab35;
+      }
+
+      .cls-18 {
+        fill: #ff8e1e;
+      }
+
+      .cls-19 {
+        fill: #ff7109;
+      }
+
+      .cls-20 {
+        fill: #ff9423;
+      }
+
+      .cls-21 {
+        fill: #ffa530;
+      }
+
+      .cls-22 {
+        fill: #ff881b;
+      }
+
+      .cls-23 {
+        fill: #ff6d05;
+      }
+
+      .cls-24 {
+        fill: #ff780e;
+      }
+
+      .cls-25 {
+        fill: #ff8c1d;
+      }
+
+      .cls-26 {
+        fill: #ffa833;
+      }
+
+      .cls-27 {
+        fill: #ff8417;
+      }
+
+      .cls-28 {
+        fill: #ff8f1f;
+      }
+
+      .cls-29 {
+        fill: #ff740b;
+      }
+
+      .cls-30 {
+        fill: #ffa02d;
+      }
+
+      .cls-31 {
+        fill: #ff9826;
+      }
+
+      .cls-32 {
+        fill: #ff9020;
+      }
+
+      .cls-33 {
+        fill: #ffad37;
+      }
+
+      .cls-34 {
+        fill: #ff8317;
+      }
+
+      .cls-35 {
+        fill: #ff9d2a;
+      }
+
+      .cls-36 {
+        fill: #ff9c29;
+      }
+
+      .cls-37 {
+        fill: #ffa12d;
+      }
+
+      .cls-38 {
+        fill: #ffa934;
+      }
+
+      .cls-39 {
+        fill: #ff9a28;
+      }
+
+      .cls-40 {
+        fill: #ff7a10;
+      }
+
+      .cls-41 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-42 {
+        fill: #ffac36;
+      }
+
+      .cls-43 {
+        fill: #ff8014;
+      }
+
+      .cls-44 {
+        fill: #ff6a03;
+      }
+
+      .cls-45 {
+        fill: #ffa22e;
+      }
+
+      .cls-46 {
+        fill: #ff9e2b;
+      }
+
+      .cls-47 {
+        fill: #ff7c11;
+      }
+
+      .cls-48 {
+        fill: none;
+      }
+
+      .cls-49 {
+        fill: #ff6902;
+      }
+
+      .cls-50 {
+        fill: #ff8216;
+      }
+
+      .cls-51 {
+        fill: #ff7209;
+      }
+
+      .cls-52 {
+        fill: #ff9625;
+      }
+
+      .cls-53 {
+        fill: #ff9725;
+      }
+
+      .cls-54 {
+        fill: #ff9121;
+      }
+
+      .cls-55 {
+        fill: #ff8d1e;
+      }
+
+      .cls-56 {
+        fill: #ff6e06;
+      }
+
+      .cls-57 {
+        fill: #ff9927;
+      }
+
+      .cls-58 {
+        fill: #ff770d;
+      }
+
+      .cls-59 {
+        fill: #ff6701;
+      }
+
+      .cls-60 {
+        fill: #ff750c;
+      }
+
+      .cls-61 {
+        fill: #ff9b29;
+      }
+
+      .cls-62 {
+        fill: #ffb039;
+      }
+
+      .cls-63 {
+        fill: #ffa631;
+      }
+
+      .cls-64 {
+        fill: #ff7d12;
+      }
+
+      .cls-65 {
+        fill: #ff6f07;
+      }
+
+      .cls-66 {
+        fill: #ff6802;
+      }
+
+      .cls-67 {
+        fill: #ff9524;
+      }
+
+      .cls-68 {
+        fill: #ffae37;
+      }
+
+      .cls-69 {
+        fill: #ffaf38;
+      }
+
+      .cls-70 {
+        fill: #ff7b10;
+      }
+
+      .cls-71 {
+        fill: #ff9322;
+      }
+
+      .cls-72 {
+        fill: #ff7f14;
+      }
+
+      .cls-73 {
+        fill: #ff6c05;
+      }
+
+      .cls-74 {
+        fill: #ff730a;
+      }
+
+      .cls-75 {
+        fill: #ff871a;
+      }
+
+      .cls-76 {
+        fill: #ff8518;
+      }
+    </style>
+    <clipPath id="clippath">
+      <circle class="cls-48" cx="517.57" cy="517.57" r="517.57"/>
+    </clipPath>
+  </defs>
+  <g class="cls-41">
+    <rect class="cls-62" x="0" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-69" x="13.99" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-68" x="27.98" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-33" x="41.97" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-42" x="55.95" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-17" x="69.94" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-7" x="83.93" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-38" x="97.92" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-26" x="111.91" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-1" x="125.9" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-63" x="139.88" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-21" x="153.87" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-3" x="167.86" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-12" x="181.85" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-45" x="195.84" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-37" x="209.83" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-30" x="223.81" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-2" x="237.8" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-46" x="251.79" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-35" x="265.78" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-36" x="279.77" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-61" x="293.76" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-39" x="307.74" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-57" x="321.73" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-31" x="335.72" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-53" x="349.71" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-52" x="363.7" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-67" x="377.69" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-20" x="391.68" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-71" x="405.66" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-13" x="419.65" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-54" x="433.64" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-32" x="447.63" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-28" x="461.62" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-18" x="475.61" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-55" x="489.59" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-25" x="503.58" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-4" x="517.57" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-16" x="531.56" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-22" x="545.55" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-75" x="559.54" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-15" x="573.52" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-76" x="587.51" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-27" x="601.5" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-34" x="615.49" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-50" x="629.48" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-6" x="643.47" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-43" x="657.46" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-72" x="671.44" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-14" x="685.43" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-64" x="699.42" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-47" x="713.41" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-70" x="727.4" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-40" x="741.39" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-9" x="755.37" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-24" x="769.36" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-58" x="783.35" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-11" x="797.34" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-60" x="811.33" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-29" x="825.32" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-74" x="839.3" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-51" x="853.29" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-19" x="867.28" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-5" x="881.27" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-65" x="895.26" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-56" x="909.25" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-23" x="923.23" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-73" x="937.22" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-10" x="951.21" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-44" x="965.2" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-49" x="979.19" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-66" x="993.18" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-59" x="1007.17" y="0" width="13.99" height="1035.14"/>
+    <rect class="cls-8" x="1021.15" y="0" width="13.99" height="1035.14"/>
+  </g>
+  <rect x="278.71" y="596.72" width="557.14" height="55.19" rx="11.89" ry="11.89"/>
+  <g>
+    <circle cx="435.96" cy="400.41" r="32.8"/>
+    <circle cx="678.61" cy="401.46" r="32.8"/>
+  </g>
+</svg>

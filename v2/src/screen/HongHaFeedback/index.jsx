@@ -67,6 +67,7 @@ const HongHaFeedback = () => {
                 phone: formValues.phone,
                 content: formValues.description,
                 company_id: searchParams.get("company_id"), //36
+                brand: searchParams.get("brand"), 
                 type: searchParams.get("type"),
             });
         }

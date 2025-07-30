@@ -5,6 +5,16 @@
         font-size:16px;
         margin-bottom: 20px;
     }
+    &Sub{
+        font-style: italic;
+        font-size: 14px;
+        display: block;
+        padding: 5px 0 0 50px;
+        @media (max-width:600px){
+            text-align: center;
+            padding: 5px 0 0 0;
+        }
+    }
 }
 .sub{
     padding-left: 30px;

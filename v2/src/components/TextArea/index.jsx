@@ -4,6 +4,7 @@ import styles from './TextArea.module.scss';
 function TextArea(props) {
     const classes = clsx(styles.input, {
         [styles.style1]: props.style1,
+        [styles.style3]: props.style3,
         [styles.default]: props.default,
         [styles.primary]: props.primary,
         [styles.success]: props.success,

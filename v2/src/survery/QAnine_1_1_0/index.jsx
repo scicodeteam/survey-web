@@ -12,16 +12,18 @@ const QAnine_1_1_0 = (props) => {
 
   // const [nameInput, setNameInput] = useState();
   const [products, setProducts] = useState([]);
+  
 
   // console.log(props.survey.answer);
-  console.log(products);
+  // console.log(products);
 
   // Update sự thay đổi của UI
-  const handleChange = (message, question_id, suggested_answer_id, nameInput, noIdead, checked) => {
+  const handleChange = (message, question_id, suggested_answer_id, noIdead, checked, list_service, name_anser) => {
     let data;
     let check = false;
 
     data = {
+      "name_anser": name_anser,
       "skipped": "",
       "question_id": question_id,
       "suggested_answer_id": suggested_answer_id,
@@ -32,8 +34,13 @@ const QAnine_1_1_0 = (props) => {
       "value_text_box": "",
       "value_numberical_box": "",
       "value_char_box": "",
-      "value_comment": message ? message : '',
+      "value_comment": message ? message : '',    
     };
+
+    // kiểm tra  list_service có  trong answer hay không
+    if (list_service) {
+      data.list_service = [list_service];
+    }
     // setNameInput(nameInput);
 
     if (!noIdead && question_id && suggested_answer_id) {
@@ -41,7 +48,8 @@ const QAnine_1_1_0 = (props) => {
       // Check Product Update
       if (products.length > 0) {
         products.forEach((product) => {
-          if (product.suggested_answer_id === suggested_answer_id) {
+          if (product.name_anser === name_anser) {
+          // if (product.suggested_answer_id === suggested_answer_id) {
             handleUpdateItem(data);
             check = false;
           } else {
@@ -61,12 +69,13 @@ const QAnine_1_1_0 = (props) => {
       
       // Nếu đã có sản phẩm, và sản phẩm được checked thì sẽ xóa sản phẩm
       if (products.length > 0 && checked === true) {
-        handleDeleteItem(suggested_answer_id)
+        handleDeleteItem(name_anser)
+        // handleDeleteItem(suggested_answer_id)
       }      
 
     } else {
       // Nếu click No Anser gửi data
-      props.onLoad('staff', data);
+      // props.onLoad('staff', data);
     }
   }
 
@@ -81,19 +90,22 @@ const QAnine_1_1_0 = (props) => {
   const handleUpdateItem = (productUpdate) => {
     setProducts(
       products.map((product) =>
-        product.suggested_answer_id === productUpdate.suggested_answer_id ? productUpdate : product
+        product.name_anser === productUpdate.name_anser ? productUpdate : product
+        // product.suggested_answer_id === productUpdate.suggested_answer_id ? productUpdate : product
       )
     );
   };
 
   // Delete Data
   const handleDeleteItem = (id) => {
-    setProducts(products.filter(item => item.suggested_answer_id !== id));
+    setProducts(products.filter(item => item.name_anser !== id));
+    // setProducts(products.filter(item => item.suggested_answer_id !== id));
   };
 
   // Xóa nhiều sản phẩm
   const handleDeleteItems = (ids) => {
-    setProducts(products.filter(item => !ids.includes(item.suggested_answer_id)));
+    setProducts(products.filter(item => !ids.includes(item.name_anser)));
+    // setProducts(products.filter(item => !ids.includes(item.suggested_answer_id)));
   };
 
   // Gửi data ra Component Cha
@@ -107,6 +119,9 @@ const QAnine_1_1_0 = (props) => {
     <div className={clsx(styles.section)}>
       <div className={clsx(styles.title)}>
         {survey.title}
+        <span className={clsx(styles.titleSub)}>
+            Bấm vào phía dưới để lựa chọn
+        </span>
       </div>
 
       <div className={clsx(styles.question)}>
@@ -116,11 +131,6 @@ const QAnine_1_1_0 = (props) => {
           handleDeleteItem={handleDeleteItem}
           handleDeleteItems={handleDeleteItems}
         />
-        {/* <App
-          answer={answer}
-          survey={survey}
-          onClick={handleChange}
-        /> */}
       </div>
       {props.error && (
         <div className={clsx(styles.feedback)}>{props.error}</div>
@@ -128,231 +138,5 @@ const QAnine_1_1_0 = (props) => {
     </div>
   );
 }
-
-// Xây dựng UI chính
-const App = (props) => {
-  const [reset, setReset] = useState(false);
-  const { answer } = props;
-  const { survey } = props;
-
-  const handleCheckReset = (checked) => {
-    checked ? setReset(true) : setReset(false);
-  };
-
-  const handleRemoveReset = () => {
-    setReset(false);
-  };
-
-  return (
-    <>
-      {answer.map((item, index) => (
-        <div key={item.id} className={clsx(styles.col)}>
-          {index < answer.length && <CheckBox
-            data={item}
-            name={item.value}
-            onReset={handleRemoveReset}
-            reset={reset}
-            onClick={props.onClick}
-            staff={item}
-          />}
-        </div>
-      ))}
-    </>
-  );
-};
-
-// {index === answer.length - 1 && <Reset
-//   name={item.value}
-//   onReset={handleCheckReset}
-//   reset={reset}
-//   noIdead
-//   onClick={props.onClick}
-//   staff={item}
-// />}
-
-// Xây dựng nút checkbox
-const CheckBox = (props) => {
-  const [checked, setChecked] = useState(false);
-  const [groupChecked, setGroupChecked] = useState(false);
-
-  // Lấy bộ câu trả lời
-  const anser = props.data;
-
-  // Lấy danh sách câu trả lời 
-  const topic = anser.list_service;
-  
-  
-  useEffect(() => {
-    if (!props.reset) {
-      setChecked(false);
-    }
-  }, []);
-
-  const handleChange = () => {
-    props.onReset();
-    setChecked(!checked);
-  };
-
-  const handleGroupChange = () => {
-    props.onReset();
-    setGroupChecked(!groupChecked);
-  };
-
-  return (
-    <div>
-      <Input
-        checked={groupChecked}
-        handleChange={handleGroupChange}
-        name={props.name}
-        reset={props.reset}
-        onClick={props.onClick}
-        staff={props.staff}
-        input='none'
-      />
-      {groupChecked && <div className={styles.sub}> {
-        topic.map((item, idx) => (
-          <Input
-            // checked={checked}
-            key={idx}
-            handleChange={handleChange}
-            name={item.name ? item.name : item.value}
-            reset={props.reset}
-            onClick={props.onClick}
-            staff={props.staff}
-          />
-        ))}  
-      </div>
-      }
-    </div>
-  );
-};
-
-// Xây dựng tính năng reset
-const Reset = (props) => {
-  const [checked, setChecked] = useState(false);
-
-  useEffect(() => {
-    setChecked(props.reset);
-  });
-
-  const handleChange = () => {
-    props.onReset(!checked);
-    setChecked(!checked);
-  };
-
-  return (
-    <Input
-      checked={checked}
-      handleChange={handleChange}
-      name={props.name}
-      reset={props.reset}
-      noIdead={props.noIdead}
-      onClick={props.onClick}
-      staff={props.staff}
-    />
-  );
-};
-
-// Xây dựng component Input
-const Input = (props) => {
-  // const [message, setMessage] = useState();
-  const question_id = props.staff.question_id;
-  const suggested_answer_id = props.staff.id;
-  const nameInput = props.staff.id;
-
-  const [checked, setChecked] = useState(false);
-
-  const handleChange = () => {
-    // props.onReset(!checked);
-    props.handleChange();
-    setChecked(!checked);
-  };
-
-  // const handleInputChanged = (event) => {
-  //   setMessage(event.target.value);
-  // };
-
-  // Khai báo State lưu trữ danh sách Input
-  const [inputList, setInputList] = useState([""]);
-
-  // Khai báo State lưu trữ dữ liệu người dùng nhập vào Input
-  const [inputValues, setInputValues] = useState([""]);
-
-  // Tạo giá trị ngẫu nhiên render Key không trùng lặp
-  const generateId = () => Math.floor(Math.random() * 10000);
-
-  // Update inputValues khi sự thay đổi của người dùng
-  const handleInputChange = (index) => (event) => {
-    const newInputValues = [...inputValues];
-    newInputValues[index] = event.target.value;
-    setInputValues(newInputValues);
-  };
-
-  // Thêm Input
-  const handleAdd = (event) => {
-    event.preventDefault();
-    setInputList([...inputList, generateId()]);
-    setInputValues([...inputValues, ""]);
-  };
-
-  // Xóa Input
-  const handleRemove = (index) => (event) => {
-    event.preventDefault();
-    setInputList(inputList.filter((input, i) => i !== index));
-    setInputValues(inputValues.filter((input, i) => i !== index));
-  };
-
-  // Truyền dữ liệu khi gõ text
-  useEffect(() => {
-    inputValues !== '' && props.onClick(inputValues, question_id, suggested_answer_id, nameInput);
-  }, [inputValues]);
-
-  return (
-    <div className={styles.checkBox}>
-      {props.noIdead && (
-        <div className={clsx(styles.questionCheck)}>
-          <label>
-            <input
-              type='checkbox'
-              checked={props.reset && props.checked}
-              onChange={props.handleChange}
-              onClick={() => props.onClick(!props.checked && 'Không ý kiến', question_id, suggested_answer_id, nameInput, props.noIdead)}
-            />
-            <span> {props.name}</span>
-          </label>
-        </div>
-      )}
-
-      {!props.noIdead && (
-        <div className={clsx(styles.questionCheck)}>
-          <label>
-            <input
-              type='checkbox'
-              checked={!props.reset && props.checked}
-              // onChange={props.handleChange}
-              onChange={handleChange}
-              onClick={() => props.onClick(inputValues, question_id, suggested_answer_id, nameInput, props.noIdead, props.checked)}
-              name={props.staff.id}
-            />
-            <span> {props.name}</span>
-          </label>
-        </div>
-      )}
-      {checked && !props.reset && props.input !== 'none' && (
-        <div>          
-          {/* {inputList.map((input, index) => (
-            <div key={input}>
-              <textarea
-                value={inputValues[index] || ""}
-                onChange={handleInputChange(index)}
-                placeholder="Lý do quý khách không hài lòng"
-              />
-            </div>
-          ))} */}
-        </div>
-      )}
-    </div>
-  );
-};
 
 export default QAnine_1_1_0;

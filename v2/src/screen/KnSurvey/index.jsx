@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { useEffect, useState, useRef } from "react";
 import { useSearchParams } from 'react-router-dom'
 import Button from "../../components/Button";
+import Loading from "../../components/Loading"
 import DefaultLayout from '../../layout/DefaultLayout';
 import styles from './KnSurvey.module.scss';
 import { getSurvey, postSurvey } from '../../api/feedback';
@@ -30,6 +31,7 @@ const KnSurvey = () => {
     const [surveyList, setSurveyList] = useState();
     const [checkSurveyLoad, setCheckSurveyLoad] = useState(false);
     const [surveryID] = useState(searchParams.get("id"));
+    const [surveryBrand] = useState(searchParams.get("brand"));
     const [start, setStart] = useState(false);
     const introRef = useRef(null);
     const formRef = useRef(null);
@@ -91,8 +93,6 @@ const KnSurvey = () => {
                 mainAnswer[i].list_service = [...list_service[0].answer];
                 // console.log(list_service[0].answer);
                 // console.log(mainAnswer);
-                
-                
             }
         }
         
@@ -107,7 +107,7 @@ const KnSurvey = () => {
 
     const getIntroduce = (survey) => {
         const question = survey.question_ids.filter((q)=>{
-            if(q.col_nb == "10" && q.sequence === 17 && q.question_type === "simple_choice") {
+            if(q.col_nb == "10" && q.sequence === 18 && q.question_type === "simple_choice") {
                 return q;
             }
         })
@@ -129,6 +129,7 @@ const KnSurvey = () => {
     useEffect(() => {
         getSurvey({
             id: surveryID, 
+            brand: surveryBrand
         }).then((info) => {
             setSurveyList(info);
             setCheckSurveyLoad(true);
@@ -169,6 +170,7 @@ const KnSurvey = () => {
     }
     // console.log(formValues);
 
+    // Kiểm tra dữ liệu nhập
     const validate = (values) => {
         const errors = {};
 
@@ -178,7 +180,7 @@ const KnSurvey = () => {
 
         introduce && !values.introduce && (errors.introduce = "Bạn vui lòng chọn câu trả lời!");
 
-        freetext && !values.freetext && (errors.freetext = "Bạn vui lòng chọn câu trả lời!");
+        !freetext && !values.freetext && (errors.freetext = "Bạn vui lòng chọn câu trả lời!");
         return errors;
     }
 
@@ -216,103 +218,109 @@ const KnSurvey = () => {
             formValues.introduce && newsarr.push(formValues.introduce);
 
             formValues.freetext && newsarr.push(formValues.freetext);
-
+            
             // Sent API
             postSurvey({
-                id: searchParams.get("id"), //84091 
-                state: 'done', 
-                user_input_line_ids: newsarr, 
+                id: surveryID,
+                brand: surveryBrand,
+                state: 'done',
+                user_input_line_ids: newsarr,
             });
-            console.log(newsarr);
+            // console.log(newsarr);
         }
     }, [formErrors]);
 
-    
     return (
-        <div className={clsx(styles.background)}>
-            <DefaultLayout>
-                <div className={clsx(styles.box)}>
-                    <div className={clsx(styles.logo)}>
-                        <img src={logo} alt="Logo" />
-                    </div>
-
-                    {/* Bắt đầu khảo sát */}
-                    <div ref={introRef} className={styles.intro}>
-                        <p className={styles.introContent}>
-                            Kangnam trân trọng cảm ơn quý khách hàng <br/> đã đồng hành cùng chúng tôi trong suốt thời gian qua
-                        </p>
-                        <Button handleClick={handleStart} btnKN> Bắt đầu khảo sát </Button>
-                    </div>
-
-                    {/* Form khảo sát */}
-                    {start && (
-                        <form ref={formRef} className={clsx(styles.question)} onSubmit={handleSubmit}>
-                        
-                            {checkSurveyLoad && service.map((item, idx) => (
-                                <QAfive_1_0_1
-                                    key={idx}
-                                    survey={item}                                     
-                                    name="service"
-                                    value={formValues.service}
-                                    onLoad={getField}
-                                    error={formErrors.service}
-                                    brand={brand}
-                                />
-                            ))}
-                            {checkSurveyLoad && staff &&  staff.map((item, idx) => (
-                                <QAnine_1_1_0 
-                                    key={idx}
-                                    survey={item} 
-                                    name="staff"
-                                    value={formValues.staff}
-                                    onLoad={getField}
-                                    error={formErrors.staff}
-                                    brand={brand}
-                                />
-                            ))}
-                            
-                            {checkSurveyLoad && introduce.map((item, idx) => (
-                                <QAthree_1_0_1 
-                                    key={idx}
-                                    survey={item} 
-                                    // question={4}  
-                                    name="introduce"
-                                    value={formValues.introduce}
-                                    onLoad={getField}
-                                    error={formErrors.introduce}
-                                />
-                            ))}
-
-                            {checkSurveyLoad && freetext.map((item, idx) => (
-                                <QAfour 
-                                    key={idx}
-                                    survey={item} 
-                                    name="freetext"
-                                    value={formValues.freetext}
-                                    onLoad={getField}
-                                    error={formErrors.freetext}
-                                    brand={brand}
-                                />
-                            ))}
-                            <Button btnKN>Gửi kết quả</Button>
-                        </form>
-                    )}
-                    
-                    {/* Cảm ơn đã gửi Form */}
-                    {Object.keys(formErrors).length === 0 && isSubmit && (
-                        <div className={clsx(styles.thanks)}>
-                            <div className={clsx(styles.thanksText)}>
-                                <p>Bệnh viện Hồng Hà chân thành cảm ơn sự góp ý/ phản hồi của Quý khách hàng</p>
-                                <p>Sự góp ý/ phản hồi của Quý khách hàng sẽ giúp chúng tôi cải thiện chất lượng dịch vụ, phục vụ, nâng cao trải nghiệm khách hàng.</p>
-                                <p>Trân trọng !</p>
+        <>
+            {surveyList === 'undefined' && <Loading />}
+            {surveyList !== 'undefined' &&
+                <div className={clsx(styles.background)}>
+                    <DefaultLayout>
+                        <div className={clsx(styles.box)}>
+                            <div className={clsx(styles.logo)}>
+                                <img src={logo} alt="Logo" />
                             </div>
-                            <div className={clsx(styles.thanksHotline)}>Hotline: <a href='tel:1900633988'>1900.633.988</a></div>
-                        </div>
-                    )}
 
+                            {/* Bắt đầu khảo sát */}
+                            <div ref={introRef} className={styles.intro}>
+                                <p className={styles.introContent}>
+                                    Cảm ơn quý khách đã tin tưởng lựa chọn Kangnam. <br/> 
+                                    Để chất lượng phục vụ ngày càng tốt hơn, Kangnam chân thành ghi nhận ý kiến đánh giá của quý khách
+                                </p>
+                                <Button handleClick={handleStart} btnKN> Bắt đầu khảo sát </Button>
+                            </div>
+
+                            {/* Form khảo sát */}
+                            {start && (
+                                <form ref={formRef} className={clsx(styles.question)} onSubmit={handleSubmit}>
+                                
+                                    {checkSurveyLoad && service.map((item, idx) => (
+                                        <QAfive_1_0_1
+                                            key={idx}
+                                            survey={item}                                     
+                                            name="service"
+                                            value={formValues.service}
+                                            onLoad={getField}
+                                            error={formErrors.service}
+                                            brand={brand}
+                                        />
+                                    ))}
+                                    {checkSurveyLoad && staff &&  staff.map((item, idx) => (
+                                        <QAnine_1_1_0 
+                                            key={idx}
+                                            survey={item} 
+                                            name="staff"
+                                            value={formValues.staff}
+                                            onLoad={getField}
+                                            error={formErrors.staff}
+                                            brand={brand}
+                                        />
+                                    ))}
+                                    
+                                    {checkSurveyLoad && introduce.map((item, idx) => (
+                                        <QAthree_1_0_1 
+                                            key={idx}
+                                            survey={item} 
+                                            // question={4}  
+                                            name="introduce"
+                                            value={formValues.introduce}
+                                            onLoad={getField}
+                                            error={formErrors.introduce}
+                                        />
+                                    ))}
+
+                                    {checkSurveyLoad && freetext.map((item, idx) => (
+                                        <QAfour 
+                                            key={idx}
+                                            survey={item} 
+                                            name="freetext"
+                                            value={formValues.freetext}
+                                            onLoad={getField}
+                                            error={formErrors.freetext}
+                                            brand={brand}
+                                        />
+                                    ))}
+                                    <Button btnKN>Gửi kết quả</Button>
+                                </form>
+                            )}
+                            
+                            {/* Cảm ơn đã gửi Form */}
+                            {Object.keys(formErrors).length === 0 && isSubmit && (
+                                <div className={clsx(styles.thanks)}>
+                                    <div className={clsx(styles.thanksText)}>
+                                        <p>Chúng tôi xin ghi nhận ý kiến và cam kết <br/> sẽ không ngừng nỗ lực nâng cao chất lượng dịch vụ, để mang tới Quý khách hàng trải nghiệm tốt nhất.
+                                        </p>
+                                        <p>Trân trọng !</p>
+                                    </div>
+                                    <div className={clsx(styles.thanksHotline)}>Hotline: <a href='tel:0962778866'>0962778866</a></div>
+                                </div>
+                            )}
+
+                        </div>
+                    </DefaultLayout>
                 </div>
-            </DefaultLayout>
-        </div>
+            }
+        </>
     )
 }
 

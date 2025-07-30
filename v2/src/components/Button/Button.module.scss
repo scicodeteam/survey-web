@@ -19,6 +19,18 @@
         border-color: #b51f7e;
     }
 }
+.style3{
+    background-color: #ff6105;
+    text-transform: uppercase;
+    border-color: #ff6105;
+    border-radius: 28px;
+    padding: 10px 25px;
+    &:hover {
+        background-color: #d4eaff;
+        border-color: #ff6105;
+        color: #ff6105;
+    }
+}
 .btnKN{
     border: none;
     border-radius: 25px;
@@ -28,9 +40,9 @@
     padding: 10px 30px;
     margin:0 auto;
     display: block;
-    background:#d0a868;
+    background:#e78b4e;
     &:hover {
-        background-color: #dcb679;
+        background-color: #dc8027;
         box-shadow: 0 1px 10px rgba(0,0,0,.4);
     }
 }

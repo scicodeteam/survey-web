@@ -22,6 +22,7 @@ const HongHaSurvey = () => {
     const [surveyList, setSurveyList] = useState();
     const [checkSurveyLoad, setCheckSurveyLoad] = useState(false);
     const [surveryID] = useState(searchParams.get("id"));
+    const [surveryBrand] = useState(searchParams.get("brand"));
     const [start, setStart] = useState(false);
     const introRef = useRef(null);
     const formRef = useRef(null);
@@ -77,6 +78,7 @@ const HongHaSurvey = () => {
     useEffect(() => {
         getSurvey({
             id: surveryID, 
+            brand: surveryBrand
         }).then((info) => {
             // Kiểm tra bộ câu hỏi
             if(info.data.message){
@@ -172,7 +174,8 @@ const HongHaSurvey = () => {
 
             // Sent API
             postSurvey({
-                id: searchParams.get("id"), //84091 
+                id: surveryID, 
+                brand: surveryBrand,
                 state: 'done', 
                 user_input_line_ids: newsarr, 
             });

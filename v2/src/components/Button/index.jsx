@@ -4,6 +4,7 @@ import styles from './Button.module.scss';
 function Button(props) {
     const classes = clsx(styles.btn, {
         [styles.style1]: props.style1,
+        [styles.style3]: props.style3,
         [styles.btnKN]: props.btnKN,
         [styles.btnNK]: props.btnNK,
         [styles.btnHH]: props.btnHH,

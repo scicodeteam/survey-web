@@ -5,6 +5,16 @@
         font-size:16px;
         margin-bottom: 20px;
     }
+    &Sub{
+        font-style: italic;
+        font-size: 14px;
+        display: block;
+        padding: 5px 0 0 50px;
+        @media (max-width:600px){
+            text-align: center;
+            padding: 5px 0 0 0;
+        }
+    }
 }
 
 .section {
@@ -13,7 +23,9 @@
 }
 .question {
     width: 100%;
+    padding: 10px 0;
     @media(max-width:768px){
+        padding: 0;
         margin-bottom: 30px;
     }
     &Title {
@@ -35,7 +47,7 @@
         cursor: pointer;
         margin-left: 0;
         @media (max-width:600px){
-            width:30%;
+            width:13%;
         }
     }
 
@@ -52,8 +64,8 @@
     justify-content: center;
     @media(max-width:600px){
         flex-wrap: wrap;
-        gap:0 9px;
-        max-width: 90%;
+        gap:0 10px;
+        max-width: 100%;
     }
     span {
         width: 110px;
@@ -65,12 +77,28 @@
         border-radius: 6px;
         font-size: 16px;
         transition: all 0.2s linear;
-        border:none;
-        &:hover{
-            background:#eee;
+        border: 1px solid #fff;
+        @media (max-width:768px){
+            width: 80px;
+            height: 110px;
         }
-        &.active{
-            background:#f3f3f3;
+        @media (max-width:600px){
+           width:100%;
+           height:100%;
+           padding:4px;
+        }
+        &:hover, &.active{
+            // background:#f3f3f3;
+            // transition: .3s;
+            // border: 1px  solid #c3c3c3;
+            transition: .3s;
+            border: 1px solid #c5c5c5;
+            box-shadow: 0 1px 10px #bdbdbd33;
+            background: #ccc;
+
+            // img{
+            //     opacity: 1;
+            // }
         }
         p{
             text-transform: math-auto;
@@ -87,18 +115,12 @@
             height:50px;
             margin:0 auto 5px;
             display: block;
+            // opacity: .7;
+            transition: .3s;
             @media(max-width:600px){
-                width:40px;
-                height:40px;
+                width:35px;
+                height:35px;
             }
-        }
-        @media (max-width:768px){
-            width: 80px;
-            height: 110px;
-        }
-        @media (max-width:600px){
-           width:95px;
-           height:95px;
         }
     }
 }

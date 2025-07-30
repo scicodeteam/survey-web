@@ -23,6 +23,7 @@ const HongHaSurvey2 = () => {
     const [surveyList, setSurveyList] = useState();
     const [checkSurveyLoad, setCheckSurveyLoad] = useState(false);
     const [surveryID] = useState(searchParams.get("id"));
+    const [surveryBrand] = useState(searchParams.get("brand"));
     const [start, setStart] = useState(false);
     const introRef = useRef(null);
     const formRef = useRef(null);
@@ -32,7 +33,7 @@ const HongHaSurvey2 = () => {
     const [freetext, setFreetext] = useState();
     const [brand, setBrand] = useState();
     // console.log(surveyList.data.data[0].question_ids);
-
+            
     // Lấy danh sách khảo sát về dịch vụ
     // console.log('Cau hoi dich vu', service);
 
@@ -80,6 +81,7 @@ const HongHaSurvey2 = () => {
     useEffect(() => {
         getSurvey({
             id: surveryID, 
+            brand: surveryBrand
         }).then((info) => {
             setSurveyList(info);
             setCheckSurveyLoad(true);
@@ -167,12 +169,12 @@ const HongHaSurvey2 = () => {
             formValues.introduce && newsarr.push(formValues.introduce);
 
             formValues.freetext && newsarr.push(formValues.freetext);
-
             // Sent API
             postSurvey({
-                id: searchParams.get("id"), //84091 
-                state: 'done', 
-                user_input_line_ids: newsarr, 
+                id: surveryID,
+                brand: surveryBrand,
+                state: 'done',
+                user_input_line_ids: newsarr,
             });
             // console.log(newsarr);
         }

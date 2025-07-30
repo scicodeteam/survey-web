@@ -3,12 +3,12 @@ import styles from './QAfive_1_0_1.module.scss';
 import { useEffect, useState } from 'react';
 
 // Thêm file media
-import accept from '../../assets/accept-react.svg';
-import angry from '../../assets/angry-react.svg';
-import expectations from '../../assets/expectations-react.svg';
-import satisfy from '../../assets/satisfy-react.svg';
-import happy from '../../assets/happy-react.svg';
-import perfect from '../../assets/perfect-react.svg';
+import angry from '../../assets/react-01.svg';
+import accept from '../../assets/react-02.svg';
+import expectations from '../../assets/react-03.svg';
+import satisfy from '../../assets/react-04.svg';
+import happy from '../../assets/react-05.svg';
+import perfect from '../../assets/react-06.svg';
 
 // Câu Dịch vụ
 const QAfive_1_0_1 = (props) => {
@@ -103,6 +103,9 @@ const QAfive_1_0_1 = (props) => {
         <div className={clsx(styles.section)}> 
             <div className={clsx(styles.title)}>
                 {survey.title}
+                <span className={clsx(styles.titleSub)}>
+                    Bấm vào biểu tượng phía dưới để lựa chọn
+                </span>
             </div>
             
             <div className={clsx(styles.question)}>

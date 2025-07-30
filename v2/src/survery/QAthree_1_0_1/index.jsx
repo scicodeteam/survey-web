@@ -11,7 +11,7 @@ const QAthree_1_0_1 = (props) => {
     const [formValues, setFormValues] = useState([]);
     const [nameInput, setNameInput] = useState();
     const [active, setActive] = useState();
-    const color = ['#f78373', '#e94c36', '#f59d00', '#f59d00', '#fbca43', '#fbca43', '#bbdb5b', '#bbdb5b', '#58d357', '#58d357', '#26d125'];
+    const color = ['#ff371b', '#fd6954',  '#fbca43', '#fbca43','#f59d00', '#f59d00', '#bbdb5b', '#bbdb5b', '#58d357', '#58d357', '#26d125'];
 
     // console.log(answer);
     // Xử lý UI
@@ -72,6 +72,9 @@ const QAthree_1_0_1 = (props) => {
         <div className={clsx(styles.section)}> 
             <div className={clsx(styles.title)}>
                 {survey.title}
+                <span className={clsx(styles.titleSub)}>
+                    Bấm vào chữ số phía dưới để lựa chọn
+                </span>
             </div>
             
             <div className={clsx(styles.question)}>
@@ -83,7 +86,7 @@ const QAthree_1_0_1 = (props) => {
                 <div className={styles['level']}>
                     <span className={styles['left']}>Không</span>
                     <span className={styles['center']}>Có thể</span>
-                    <span className={styles['right']}>Chắc chắn có</span>
+                    <span className={styles['right']}>Chắc chắn</span>
                 </div>
             </div>
             {props.error && (

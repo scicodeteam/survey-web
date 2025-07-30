@@ -3,14 +3,22 @@ import { TOKEN } from '../utils/const';
 
 // Post Feedback
 export const postFeedback = async (body) => {
-    return await http.post(`/create-case-survey?token=${TOKEN}&name=${body.name?.replace(/[<>[\]+'"#&]/g, '')}&phone=${body.phone}&content=${body.content?.replace(/[<>[\]+'"#&]/g, '')}&company_id=${body.company_id}&type=${body.type}`)
+    return await http.post(`/create-case-survey?
+        token=${TOKEN}&
+        name=${body.name?.replace(/[<>[\]+'"#&]/g, '')}&
+        phone=${body.phone}&
+        content=${body.content?.replace(/[<>[\]+'"#&]/g, '')}&
+        company_id=${body.company_id}&
+        brand=${body.brand}&
+        type=${body.type}`)
 };
 
 // Get Survey
 export const getSurvey = async (body) => {
     return await http.get(`/get-survey?
         token=${TOKEN}&
-        id=${body.id}
+        id=${body.id}&
+        brand=${body.brand}
     `);
 };
 
@@ -20,7 +28,7 @@ export const postSurvey = async (body) => {
         token=${TOKEN}&
         id=${body.id}&
         state=${body.state}&
+        brand=${body.brand}&
         user_input_line_ids=${JSON.stringify(body.user_input_line_ids)}
     `);
 };
-// user_input_line_ids=${body.user_input_line_ids}
